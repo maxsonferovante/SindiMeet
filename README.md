@@ -1,10 +1,10 @@
-
-```markdown
 # Sistema de Reservas para Atendimento Jurídico em Sindicato - SindiMeet
 
 ## Propósito do Projeto
 
-O Sistema de Reservas foi desenvolvido com o propósito de facilitar o agendamento de atendimento jurídico para associados de um sindicato. Ele permite que os associados façam login em suas contas, façam reservas para atendimento e verifiquem o status das mesmas. Esse sistema visa otimizar o processo de agendamento, tornando-o mais conveniente tanto para os associados quanto para a equipe de atendimento.
+O Sistema de Reservas foi desenvolvido com o propósito de facilitar o agendamento de atendimento jurídico para associados de um sindicato. 
+Ele permite que os associados façam login em suas contas, façam reservas para atendimento e verifiquem o status das mesmas. 
+Esse sistema visa otimizar o processo de agendamento, tornando-o mais conveniente tanto para os associados quanto para a equipe de atendimento.
 
 ## Tecnologias Usadas
 
@@ -61,5 +61,3 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
    Configure as credenciais de envio de e-mails no arquivo `.env` para que o sistema possa enviar notificações por e-mail quando houver atualizações nas reservas.
 
 Lembre-se de consultar a documentação da API para obter detalhes sobre como usar cada rota e endpoint.
-
-```
