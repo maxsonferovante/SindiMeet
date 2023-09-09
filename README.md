@@ -6,6 +6,16 @@ O Sistema de Reservas foi desenvolvido com o propósito de facilitar o agendamen
 Ele permite que os associados façam login em suas contas, façam reservas para atendimento e verifiquem o status das mesmas. 
 Esse sistema visa otimizar o processo de agendamento, tornando-o mais conveniente tanto para os associados quanto para a equipe de atendimento.
 
+Com este sistema, os associados poderão:
+
+✅ Agendar Reservas Online: Adeus, longas filas! Agora você pode reservar seu horário de atendimento com apenas alguns cliques, escolhendo a data que melhor se adequa à sua agenda.
+
+✅ Verificar o Status da Reserva: Mantenha-se informado sobre o andamento da sua reserva. Saiba exatamente quando você será atendido e evite esperas desnecessárias.
+
+✅ Atendimento Personalizado: Nosso sistema organiza as reservas por ordem de chegada, garantindo um atendimento justo e eficiente.
+
+✅ Notificações por E-mail: Você receberá lembretes por e-mail para garantir que você não perca o seu horário de atendimento e esteja sempre atualizado.
+
 ## Tecnologias Usadas
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
