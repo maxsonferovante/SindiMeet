@@ -8,6 +8,7 @@ export interface IAUserRepository {
     existedEmail(email: string): Promise<boolean>;
     existedNickname(nickname: string): Promise<boolean>;
 
+
     save(user: User): Promise<void>;
     update(user: UserUpdate): Promise<void>;
     delete(user: UserDelete): Promise<void>;

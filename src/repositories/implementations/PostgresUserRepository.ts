@@ -3,6 +3,7 @@ import { User, UserDelete, UserModel, UserUpdate, UserUpdatePassword } from "../
 
 import { PrismaClient } from "@prisma/client";
 
+
 const prisma = new PrismaClient();
 
 export class PostgresUserRepository implements IAUserRepository {
@@ -52,11 +53,25 @@ export class PostgresUserRepository implements IAUserRepository {
 
         }
         catch (err) {
-            throw new Error("User not found.");
+            throw new Error("Failed to find user by nickname.");
         }
     }
-    findById(id: string): Promise<User> {
-        throw new Error("Method not implemented.");
+    async findById(id: string): Promise<User> {
+        try {
+            const user = await prisma.user.findUniqueOrThrow({
+                where: {
+                    id: id,
+                }
+            });
+
+            if (user != null) {
+                return new UserModel(user);
+            }
+            throw new Error("User not found.");
+        }
+        catch (err) {
+            throw new Error("User not found.");
+        }
     }
     async findByEmail(email: string): Promise<User> {
         try {
