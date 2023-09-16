@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { createUserController } from "../useCases/CreateUser";
-import { loginUserController } from "../useCases/LoginUser";
+
+import { authenticateUserController } from "../useCases/AuthenticateUser";
 
 const sindMeetRoutes = Router();
 
@@ -17,9 +18,9 @@ sindMeetRoutes.post("/user/create", (request, response) => {
     return createUserController.handle(request, response);
 });
 
-// route to login
-sindMeetRoutes.post("/user/login", (request, response) => {
-    return loginUserController.handle(request, response);
+
+sindMeetRoutes.post("", (request, response) => {
+    return authenticateUserController.handle(request, response);
 });
 
 export { sindMeetRoutes };
