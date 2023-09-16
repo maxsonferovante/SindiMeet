@@ -5,13 +5,13 @@ import { NextFunction } from 'express-serve-static-core';
 import { AppError } from './errors/AppError';
 
 
-import { sindMeetRoutes } from './routes/sindMeetRoutes';
+import { authenticateRouter } from './routes/authenticateRouter';
 
 const app = express();
 
 
 app.use(express.json());
-app.use(sindMeetRoutes);
+app.use(authenticateRouter);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {
