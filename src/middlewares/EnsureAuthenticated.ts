@@ -4,6 +4,7 @@ import auth from "../config/auth";
 
 
 import { IAUserRepository } from "../repositories/IAUserRepository";
+import { AppError } from "../errors/AppError";
 
 interface IPayload {
     sub: string;
@@ -22,7 +23,7 @@ export class EnsureAuthenticatedMiddleware {
         const authHeader = request.headers.authorization;
 
         if (!authHeader) {
-            throw new Error('Token missing!');
+            throw new AppError('Token missing!', 401);
         }
 
         const [, token] = authHeader.split(' ');
@@ -38,12 +39,12 @@ export class EnsureAuthenticatedMiddleware {
             const user = this.userRepository.findById(decoded.sub);
 
             if (!user) {
-                throw new Error('User does not exists!');
+                throw new AppError('User does not exists!', 401);
             }
 
             return next();
         } catch (error) {
-            throw new Error('Invalid token!');
+            throw new AppError('Invalid token!', 401);
         }
     }
 }

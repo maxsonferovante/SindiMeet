@@ -1,6 +1,7 @@
 import { IMailProvider, IMessage } from "../IMailProviders";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
+import { AppError } from "../../errors/AppError";
 export class MailtrapMailProvider implements IMailProvider {
     private transporter: Mail;
     constructor() {
@@ -30,7 +31,7 @@ export class MailtrapMailProvider implements IMailProvider {
             });
         }
         catch (err) {
-            throw new Error("Failed to send email in MailtrapMailProvider.");
+            throw new AppError("Failed to send email in MailtrapMailProvider", 400);
         }
     }
 }

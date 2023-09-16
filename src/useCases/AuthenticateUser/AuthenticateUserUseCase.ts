@@ -4,6 +4,7 @@ import { IAuthenticateUserRequestDTO } from "./IAuthenticateUserRequestDTO";
 import { IAuthenticateUserResponseDTO } from "./IAuthenticateUserResponseDTO";
 import { sign } from "jsonwebtoken";
 import auth from "../../config/auth";
+import { AppError } from "../../errors/AppError";
 
 
 export class AuthenticateUserUseCase {
@@ -17,12 +18,12 @@ export class AuthenticateUserUseCase {
         const user = await this.userRepository.findByNickname(data.nickname);
 
         if (!user) {
-            throw new Error('Email or password incorrect!');
+            throw new AppError('Email or password incorrect!', 401);
         }
 
         const passwordMatch = await compare(data.password, user.password);
         if (!passwordMatch) {
-            throw new Error('Email or password incorrect!');
+            throw new AppError('Email or password incorrect!', 401);
         }
 
         // Gerar token

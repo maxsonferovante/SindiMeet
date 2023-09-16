@@ -3,6 +3,7 @@ import { UserModel } from "../../entities/User";
 import { IMailProvider } from "../../providers/IMailProviders";
 import { IAUserRepository } from "../../repositories/IAUserRepository";
 import { ICreateUserRequestDTO } from "./ICreateUserRequestDTO";
+import { AppError } from "../../errors/AppError";
 
 export class CreateUserUseCase {
     private readonly saltRounds = 8;
@@ -19,7 +20,7 @@ export class CreateUserUseCase {
             const userAlreadyExistsNickname = await this.userRepository.existedNickname(data.nickname);
 
             if (userAlreadyExists && userAlreadyExistsNickname) {
-                throw new Error("User already exists.");
+                throw new AppError("User already exists!", 400);
             }
 
             const user = new UserModel(
@@ -48,7 +49,7 @@ export class CreateUserUseCase {
             }); */
         }
         catch (err) {
-            throw new Error("Failed to create user in UseCase. " + err.message);
+            throw new AppError(err.message || "Unexpected error.", 400);
         }
     }
 }
