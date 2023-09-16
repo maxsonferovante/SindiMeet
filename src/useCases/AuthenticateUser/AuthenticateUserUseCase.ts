@@ -6,14 +6,10 @@ import { sign } from "jsonwebtoken";
 import auth from "../../config/auth";
 import { AppError } from "../../errors/AppError";
 
-
 export class AuthenticateUserUseCase {
     constructor(
         private userRepository: IAUserRepository
-    ) {
-
-    }
-
+    ) { }
     async execute(data: IAuthenticateUserRequestDTO): Promise<IAuthenticateUserResponseDTO> {
         const user = await this.userRepository.findByNickname(data.nickname);
 
@@ -27,21 +23,19 @@ export class AuthenticateUserUseCase {
         }
 
         // Gerar token
-        const token = sign(
-            {},
+        const token = sign({},
             auth.secrect_token,
             {
                 subject: user.id,
                 expiresIn: auth.expires_in_token
             }
         )
-
         return {
+            token: token,
             user: {
-                name: user.nickname,
-                email: user.email
-            },
-            token
+                nickname: user.nickname,
+                email: user.email,
+            }
         }
     }
 }

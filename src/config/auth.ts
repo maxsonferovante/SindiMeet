@@ -1,4 +1,4 @@
 export default {
-    secrect_token: "c541a0332de29d89ef5a435ed4167549",
-    expires_in_token: "15m"
+    secrect_token: "1daf9361fdcc46bf8f4b449c03ded20e",
+    expires_in_token: "1d"
 }

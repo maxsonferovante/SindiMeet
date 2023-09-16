@@ -5,3 +5,4 @@ export interface ICreateUserRequestDTO {
     password: string;
     nickname: string;
 }
+

@@ -8,13 +8,3 @@ export class AppError {
     }
 }
 
-export default {
-    "NotFoundError": "NotFoundError",
-    "BadRequestError": "BadRequestError",
-    "UnauthorizedError": "UnauthorizedError",
-    "ForbiddenError": "ForbiddenError",
-    "InternalServerError": "InternalServerError",
-    "NotImplementedError": "NotImplementedError",
-    "BadGatewayError": "BadGatewayError",
-
-}

@@ -6,12 +6,14 @@ import { AppError } from './errors/AppError';
 
 
 import { authenticateRouter } from './routes/authenticateRouter';
+import { reservationRouter } from './routes/reservationRouter';
 
 const app = express();
 
 
 app.use(express.json());
 app.use(authenticateRouter);
+app.use(reservationRouter);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {

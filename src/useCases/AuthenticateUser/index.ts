@@ -9,6 +9,7 @@ const autehnticateUserUseCase = new AuthenticateUserUseCase(
     postgresUserRepository,
 );
 
+
 const authenticateUserController = new AuthenticateUserController(
     autehnticateUserUseCase,
 );
