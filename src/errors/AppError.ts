@@ -7,3 +7,14 @@ export class AppError {
         return new AppError(message, statusCode);
     }
 }
+
+export default {
+    "NotFoundError": "NotFoundError",
+    "BadRequestError": "BadRequestError",
+    "UnauthorizedError": "UnauthorizedError",
+    "ForbiddenError": "ForbiddenError",
+    "InternalServerError": "InternalServerError",
+    "NotImplementedError": "NotImplementedError",
+    "BadGatewayError": "BadGatewayError",
+
+}
