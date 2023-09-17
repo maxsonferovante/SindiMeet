@@ -1,12 +1,10 @@
-# Sistema de Reservas para Atendimento Jurídico em Sindicato - SindiMeet
+# SindiMeet - Sistema de Reservas para Atendimento Jurídico
 
 ## Propósito do Projeto
 
-O Sistema de Reservas foi desenvolvido com o propósito de facilitar o agendamento de atendimento jurídico para associados de um sindicato. 
-Ele permite que os associados façam login em suas contas, façam reservas para atendimento e verifiquem o status das mesmas. 
-Esse sistema visa otimizar o processo de agendamento, tornando-o mais conveniente tanto para os associados quanto para a equipe de atendimento.
+O SindiMeet é um sistema que visa facilitar o agendamento de atendimento jurídico para os associados de um sindicato. Permite que os associados façam login em suas contas, agendem atendimentos e verifiquem o status das reservas. O sistema foi desenvolvido com foco na praticidade e comodidade dos usuários.
 
-Com este sistema, os associados poderão:
+### Com este sistema, os associados poderão:
 
 ✅ Agendar Reservas Online: Adeus, longas filas! Agora você pode reservar seu horário de atendimento com apenas alguns cliques, escolhendo a data que melhor se adequa à sua agenda.
 
@@ -16,58 +14,42 @@ Com este sistema, os associados poderão:
 
 ✅ Notificações por E-mail: Você receberá lembretes por e-mail para garantir que você não perca o seu horário de atendimento e esteja sempre atualizado.
 
-## Tecnologias Usadas
+## Tecnologias Utilizadas
 
-O projeto foi desenvolvido utilizando as seguintes tecnologias:
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) 
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Nodemailer](https://img.shields.io/badge/Nodemailer-00C7B7?style=for-the-badge&logo=nodemailer&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![JWT](https://img.shields.io/badge/JSON_Web_Tokens-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 
-- Node.js: Ambiente de execução JavaScript do lado do servidor.
-- TypeScript: Linguagem de programação que melhora a escalabilidade e manutenibilidade do código.
-- Express.js: Framework para construção de aplicativos web em Node.js.
-- PostgreSQL: Sistema de gerenciamento de banco de dados relacional.
-- Prisma: ORM (Object-Relational Mapping) para Node.js e TypeScript.
-- Nodemailer: Módulo para envio de e-mails.
-- Docker: Plataforma para desenvolvimento, envio e execução de aplicativos em contêineres.
 
-## Como Usar
+## Como Executar o Projeto
 
-1. **Instalação de Dependências**
+1. **Instalação de Dependências**: Certifique-se de ter o Node.js instalado em seu sistema. Execute `npm install` para instalar as dependências do projeto.
 
-   Certifique-se de ter o Node.js e o PostgreSQL instalados em seu sistema. Em seguida, execute o seguinte comando para instalar as dependências do projeto:
+2. **Configuração do Banco de Dados com Docker**: Utilize Docker para rodar uma instância do PostgreSQL com o seguinte comando:
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    docker run --name sindimeet-postgres -e POSTGRES_PASSWORD=suasenha -p 5432:5432 -d postgres
+    ```
 
-2. **Configuração do Banco de Dados**
+    Certifique-se de substituir `suasenha` pela senha desejada.
 
-   Crie um banco de dados PostgreSQL e configure as variáveis de ambiente necessárias para a conexão com o banco de dados no arquivo `.env`.
+3. **Configuração do Banco de Dados sem Docker**: Se preferir, configure um banco de dados PostgreSQL localmente e ajuste as variáveis de ambiente no arquivo `.env`.
 
-3. **Migrações do Prisma**
+4. **Migrações do Prisma**: Execute `npx prisma migrate dev` para criar as tabelas do banco de dados.
 
-   Execute as migrações do Prisma para criar as tabelas do banco de dados:
+5. **Iniciar o Servidor**: Inicie o servidor Node.js com `npm run dev`.
 
-   ```bash
-   npx prisma migrate dev
-   ```
+6. **Acesso à Aplicação**: Acesse a aplicação em seu navegador ou via ferramentas como o Postman, configurando as rotas e autenticação conforme a documentação da API.
 
-4. **Iniciar o Servidor**
+7. **Utilização da API**: Utilize a API para criar, listar, atualizar e excluir reservas, além de autenticar usuários.
 
-   Inicie o servidor Node.js com o seguinte comando:
-
-   ```bash
-   npm start
-   ```
-
-5. **Acesso à Aplicação**
-
-   Acesse a aplicação em seu navegador ou utilizando uma ferramenta como o Postman. Certifique-se de configurar as rotas e autenticação conforme a documentação da API.
-
-6. **Utilização da API**
-
-   Utilize a API para criar, listar, atualizar e excluir reservas, bem como autenticar usuários.
-
-7. **Envio de E-mails**
-
-   Configure as credenciais de envio de e-mails no arquivo `.env` para que o sistema possa enviar notificações por e-mail quando houver atualizações nas reservas.
+8. **Envio de E-mails**: Configure as credenciais de envio de e-mails no arquivo `.env` para receber notificações sobre suas reservas.
 
 Lembre-se de consultar a documentação da API para obter detalhes sobre como usar cada rota e endpoint.
+
+Além disso, você pode adaptar o arquivo `docker-compose.yml` para incluir a configuração do banco de dados PostgreSQL com Docker.
