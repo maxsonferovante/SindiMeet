@@ -6,7 +6,7 @@ import { PostgresReservationRepository } from "../repositories/implementations/P
 import { AppError } from "../errors/AppError";
 
 interface IPayload {
-    sub: string;
+    id: string;
 }
 export function ensureAuthenticated(
     request: Request,
@@ -16,24 +16,25 @@ export function ensureAuthenticated(
     if (!authHeader) {
         throw new AppError('Token missing!', 401);
     }
-    const [, token] = authHeader.split(" ");
+
+    const token = authHeader.split(" ")[1];
     try {
-        // const { sub: user_id } = verify(token, auth.secrect_token) as IPayload;
-        // request.user_id = user_id;
-        const decoded = verify(
-            token,
-            auth.secrect_token
-        ) as IPayload;
+        const { id } = verify(token, auth.secrect_token) as IPayload;
 
         const userRepository = new PostgresReservationRepository();
-        const user = userRepository.findById(decoded.sub);
+
+        const user = userRepository.findById(id);
 
         if (!user) {
             throw new AppError('User does not exists!', 401);
         }
-
-        return next();
+        else {
+            request.user = {
+                id: id,
+            };
+            return next();
+        }
     } catch (error) {
-        throw new AppError('Invalid token! ', 401);
+        throw new AppError('Invalid token!', 401);
     }
 };

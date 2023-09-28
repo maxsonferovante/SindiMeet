@@ -6,13 +6,7 @@ import { authenticateUserController } from "../useCases/AuthenticateUser";
 const authenticateRouter = Router();
 
 
-authenticateRouter.post("/user/create", (request, response) => {
-    return createUserController.handle(request, response);
-});
-
-
-authenticateRouter.post("", (request, response) => {
-    return authenticateUserController.handle(request, response);
-});
+authenticateRouter.post("/user/create", createUserController.handle);
+authenticateRouter.post("", authenticateUserController.handle);
 
 export { authenticateRouter };
