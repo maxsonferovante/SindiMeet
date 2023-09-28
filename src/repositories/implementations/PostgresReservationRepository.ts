@@ -73,7 +73,7 @@ export class PostgresReservationRepository implements IAReservationRepository {
             return reservation ? true : false;
         }
         catch (err) {
-            throw new AppError(err.message || "Unexpected error.", 400);
+            throw new AppError("Faliad in create Reservation", 400);
         }
     }
 

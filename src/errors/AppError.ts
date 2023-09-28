@@ -8,3 +8,10 @@ export class AppError {
     }
 }
 
+export class InvalidParamError extends Error {
+    constructor(props: { message: string }) {
+        super(props.message);
+        this.name = 'InvalidParamError';
+        this.stack = new Error().stack;
+    }
+}

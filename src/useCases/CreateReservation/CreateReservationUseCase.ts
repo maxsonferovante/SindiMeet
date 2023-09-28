@@ -1,6 +1,3 @@
-
-
-
 import { AppError } from "../../errors/AppError";
 import { IAReservationRepository } from "../../repositories/IAReservationRepository";
 import { ICreateReservationRequestDTO } from "./ICreateReservationRequestDTO";
@@ -11,6 +8,14 @@ export class CreateReservationUseCase {
     ) { }
     async execute(data: ICreateReservationRequestDTO) {
         try {
+            const reservationExists = await this.reservationRepository.existedReservation({
+                userId: data.userId,
+                date: data.date,
+                time: data.time,
+            });
+            if (reservationExists) {
+                throw new AppError("Reservation already exists.", 400);
+            }
             const reservation = new ReservationModel(
                 {
                     userId: data.userId,
@@ -19,17 +24,7 @@ export class CreateReservationUseCase {
                     status: Status.PENDING
                 }
             );
-            const reservationExists = await this.reservationRepository.existedReservation({
-                userId: reservation.userId,
-                date: reservation.date,
-                time: reservation.time
-            });
-
-            if (reservationExists) {
-                throw new AppError("Reservation already exists.", 400);
-            }
-            const reservationCreate = await this.reservationRepository.save(reservation);
-            return reservationCreate;
+            await this.reservationRepository.save(reservation);
         }
         catch (err) {
             throw new AppError(err.message || "Unexpected error.", 400);

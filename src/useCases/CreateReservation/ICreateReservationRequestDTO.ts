@@ -5,7 +5,7 @@ export interface ICreateReservationRequestDTO {
 }
 
 export interface ICreateReservationResponseDTO {
-    id: string;
+    id?: string;
     userId: string;
     date: Date;
     time: string;
