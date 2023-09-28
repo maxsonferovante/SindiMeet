@@ -1,6 +1,6 @@
 export interface IAuthenticateUserResponseDTO {
     user: {
-        nickname: string;
+        id: string;
         email: string;
 
     };

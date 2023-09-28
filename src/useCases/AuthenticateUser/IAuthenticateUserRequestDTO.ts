@@ -1,4 +1,4 @@
 export interface IAuthenticateUserRequestDTO {
-    nickname: string;
+    email: string;
     password: string;
 }

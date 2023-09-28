@@ -11,7 +11,7 @@ export class AuthenticateUserUseCase {
         private userRepository: IAUserRepository
     ) { }
     async execute(data: IAuthenticateUserRequestDTO): Promise<IAuthenticateUserResponseDTO> {
-        const user = await this.userRepository.findByNickname(data.nickname);
+        const user = await this.userRepository.findByEmail(data.email);
 
         if (!user) {
             throw new AppError('Email or password incorrect!', 401);
@@ -23,19 +23,13 @@ export class AuthenticateUserUseCase {
         }
 
         // Gerar token
-        const token = sign({},
-            auth.secrect_token,
-            {
-                subject: user.id,
-                expiresIn: auth.expires_in_token
-            }
-        )
+        const token = sign({ id: user.id }, auth.secrect_token, { expiresIn: auth.expires_in_token });
         return {
             token: token,
             user: {
-                nickname: user.nickname,
+                id: user.id,
                 email: user.email,
             }
-        }
+        };
     }
 }
