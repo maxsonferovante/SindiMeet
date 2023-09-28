@@ -16,7 +16,6 @@ model User {
   company     String
   email       String        @unique
   password    String
-  nickname    String
   reservation Reservation[]
   createdAt   DateTime      @default(now())
 }
