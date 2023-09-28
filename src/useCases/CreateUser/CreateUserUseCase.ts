@@ -17,9 +17,7 @@ export class CreateUserUseCase {
 
 
             const userAlreadyExists = await this.userRepository.existedEmail(data.email);
-            const userAlreadyExistsNickname = await this.userRepository.existedNickname(data.nickname);
-
-            if (userAlreadyExists && userAlreadyExistsNickname) {
+            if (userAlreadyExists) {
                 throw new AppError("User already exists!", 400);
             }
 
@@ -29,7 +27,6 @@ export class CreateUserUseCase {
                     company: data.company,
                     email: data.email,
                     password: await hash(data.password, this.saltRounds),
-                    nickname: data.nickname
                 }
             );
 

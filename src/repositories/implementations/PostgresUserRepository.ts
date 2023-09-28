@@ -24,39 +24,8 @@ export class PostgresUserRepository implements IAUserRepository {
             throw new AppError("Failed to check email.", 400);
         }
     }
-    async existedNickname(nickname: string): Promise<boolean> {
-        try {
-            const user = await prisma.user.findFirst({
-                where: {
-                    nickname: nickname,
-                }
-            });
-            if (user != null) {
-                return true;
-            }
-            return false;
-        }
-        catch (err) {
-            throw new AppError("Failed to check nickname.", 400);
-        }
-    }
-    async findByNickname(nickname: string): Promise<User> {
-        try {
-            const user = await prisma.user.findFirst({
-                where: {
-                    nickname: nickname,
-                }
-            });
-            if (user != null) {
-                return new UserModel(user);
-            }
-            throw new AppError("User not found.", 400);
 
-        }
-        catch (err) {
-            throw new AppError("Failed to check nickname.", 400);
-        }
-    }
+
     async findById(id: string): Promise<User> {
         try {
             const user = await prisma.user.findUniqueOrThrow({
@@ -100,7 +69,7 @@ export class PostgresUserRepository implements IAUserRepository {
                 company: user.company,
                 email: user.email,
                 password: user.password,
-                nickname: user.nickname,
+
             }
         });
     }

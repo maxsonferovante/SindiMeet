@@ -6,7 +6,7 @@ export interface User {
     company: string;
     email: string;
     password: string;
-    nickname: string;
+
 }
 export interface UserDelete {
     id: string;
@@ -17,7 +17,7 @@ export interface UserUpdate {
     fullName: string;
     company: string;
     email: string;
-    nickname: string;
+
 }
 export interface UserUpdatePassword {
     id: string;
@@ -30,7 +30,6 @@ export class UserModel implements User {
     public company!: string;
     public email!: string;
     public password!: string;
-    public nickname!: string;
 
     constructor(props: Omit<User, "id">, id?: string) { // Omit<User, "id"> = pega todos os campos de User menos o id
         Object.assign(this, props);
