@@ -5,6 +5,8 @@ import { reservationMiddleware, fetchAllReservationsMiddleware, updateReservatio
 import { fetchAllReservationController } from "../useCases/FetchAllReservations";
 import { fetchAllReservationsByUserController } from "../useCases/FetchAllReservationsByUser";
 import { updateReservationStatusController } from "../useCases/UpdateReservationStatus";
+import { request } from "http";
+import { listReservationsForTodayOrderedByCheckinController } from "../useCases/ListReservationsForTodayOrderedByCheckin";
 
 const reservationRouter = Router();
 
@@ -39,6 +41,15 @@ reservationRouter.post(
     ensureAuthenticated,
     (request: Request, response: Response) => {
         return updateReservationStatusController.handle(request, response);
+    });
+
+reservationRouter.get(
+    "/reservation/list/checkin",
+    (request: Request, response: Response) => {
+        return listReservationsForTodayOrderedByCheckinController.handle(request, response);
     }
+
+);
+
 export { reservationRouter };
 

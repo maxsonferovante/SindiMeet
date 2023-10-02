@@ -21,5 +21,7 @@ export interface IAReservationRepository {
 
     updateReservationStatus(data: ReservationUpdateStatus): Promise<void>;
 
+    listReservationsForTodayOrderedByCheckin(): Promise<Reservation[]>;
+
 }
 

@@ -1,3 +1,4 @@
+import { check } from "express-validator";
 import { v4 as uuidv4 } from "uuid";
 
 
@@ -5,7 +6,8 @@ export enum Status {
     PENDING = "PENDING",
     CONFIRMED = "CONFIRMED",
     CANCELED = "CANCELED",
-    COMPLETED = "COMPLETED"
+    COMPLETED = "COMPLETED",
+    CHECKIN = "CHECKIN",
 }
 export interface Reservation {
     id: string;

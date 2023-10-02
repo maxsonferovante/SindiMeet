@@ -139,4 +139,31 @@ export class PostgresReservationRepository implements IAReservationRepository {
             throw new AppError(err.message || "Unexpected error.", 400);
         }
     }
+    async listReservationsForTodayOrderedByCheckin(): Promise<Reservation[]> {
+        try {
+            const reservations = await prisma.reservation.findMany(
+                {
+                    where: {
+                        date: new Date(),
+                        status: Status.CHECKIN
+                    },
+                    orderBy: {
+                        time: 'asc',
+                    },
+                    include: {
+                        user: {
+                            select: {
+                                fullName: true,
+                                company: true,
+                            }
+                        },
+                    }
+                }
+            );
+            return reservations;
+        }
+        catch (err) {
+            throw new AppError(err.message || "Unexpected error.", 400);
+        }
+    }
 }
