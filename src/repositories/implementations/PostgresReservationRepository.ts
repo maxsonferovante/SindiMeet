@@ -123,6 +123,20 @@ export class PostgresReservationRepository implements IAReservationRepository {
         throw new Error("Method not implemented.");
     }
 
-
-
+    async updateReservationStatus(data: ReservationUpdateStatus): Promise<void> {
+        try {
+            await prisma.reservation.update({
+                where: {
+                    id: data.id,
+                    userId: data.user_id
+                },
+                data: {
+                    status: data.status
+                }
+            });
+        }
+        catch (err) {
+            throw new AppError(err.message || "Unexpected error.", 400);
+        }
+    }
 }

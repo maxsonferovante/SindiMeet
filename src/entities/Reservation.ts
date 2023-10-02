@@ -27,6 +27,7 @@ export interface ReservationUpdate {
 }
 
 export interface ReservationUpdateStatus {
+    user_id: string;
     id: string;
     status: string;
 }

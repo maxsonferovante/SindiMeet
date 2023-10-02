@@ -18,5 +18,8 @@ export interface IAReservationRepository {
 
     listAll(): Promise<Reservation[]>;
     fetchAllReservationsByUser(user_id: string): Promise<Reservation[]>;
+
+    updateReservationStatus(data: ReservationUpdateStatus): Promise<void>;
+
 }
 
