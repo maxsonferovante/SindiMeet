@@ -12,7 +12,6 @@ export class FetchAllReservationController {
             const { status } = request.params;
             const { id } = request.user;
             const reservations = await this.fetchAllReservationsUseCase.execute({
-                userId: id,
                 status: status
             });
 

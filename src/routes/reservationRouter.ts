@@ -16,7 +16,7 @@ reservationRouter.post(
     });
 
 reservationRouter.get(
-    "/reservation/list",
+    "/reservation/list/:status",
     ensureAuthenticated,
     fetchAllReservationsMiddleware,
     (request: Request, response: Response) => {
