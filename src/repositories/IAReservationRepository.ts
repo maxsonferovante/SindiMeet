@@ -1,4 +1,4 @@
-import { Reservation, ReservationDelete, ReservationExists, ReservationUpdate, ReservationUpdateStatus, reservationExists } from "../entities/Reservation";
+import { Reservation, ReservationDelete, ReservationExists, ReservationUpdate, ReservationUpdateStatus } from "../entities/Reservation";
 import { ICreateReservationResponseDTO } from "../useCases/CreateReservation/ICreateReservationRequestDTO";
 
 import { Status } from '../entities/Reservation'
@@ -17,6 +17,6 @@ export interface IAReservationRepository {
     fetchAllReservations(status: string): Promise<Reservation[]>;
 
     listAll(): Promise<Reservation[]>;
-
+    fetchAllReservationsByUser(user_id: string): Promise<Reservation[]>;
 }
 

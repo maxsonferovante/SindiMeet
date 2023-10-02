@@ -85,7 +85,27 @@ export class PostgresReservationRepository implements IAReservationRepository {
             const reservations = await prisma.reservation.findMany(
                 {
                     where: {
-                        status: dataStatus
+                        status: status
+                    },
+                    orderBy: {
+                        date: 'asc',
+                        time: 'asc',
+                    }
+                }
+            );
+            return reservations;
+        }
+        catch (err) {
+            throw new AppError(err.message || "Unexpected error.", 400);
+        }
+    }
+
+    async fetchAllReservationsByUser(user_id: string): Promise<Reservation[]> {
+        try {
+            const reservations = await prisma.reservation.findMany(
+                {
+                    where: {
+                        userId: user_id
                     },
                     orderBy: {
                         date: 'asc',
