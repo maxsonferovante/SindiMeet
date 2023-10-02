@@ -1,11 +1,11 @@
 import { Router, Response, Request } from "express";
 import { createReservationController } from "../useCases/CreateReservation/";
 import { ensureAuthenticated } from "../middlewares/EnsureAuthenticated";
+import { adminAuthenticated } from "../middlewares/adminAuthenticated";
 import { reservationMiddleware, fetchAllReservationsMiddleware, updateReservationStatusMiddleware } from "../middlewares/reservationMiddlewares/ReservationMiddleware"
 import { fetchAllReservationController } from "../useCases/FetchAllReservations";
 import { fetchAllReservationsByUserController } from "../useCases/FetchAllReservationsByUser";
 import { updateReservationStatusController } from "../useCases/UpdateReservationStatus";
-import { request } from "http";
 import { listReservationsForTodayOrderedByCheckinController } from "../useCases/ListReservationsForTodayOrderedByCheckin";
 
 const reservationRouter = Router();
@@ -45,6 +45,7 @@ reservationRouter.post(
 
 reservationRouter.get(
     "/reservation/list/checkin",
+    adminAuthenticated,
     (request: Request, response: Response) => {
         return listReservationsForTodayOrderedByCheckinController.handle(request, response);
     }

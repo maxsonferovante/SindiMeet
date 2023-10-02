@@ -20,6 +20,14 @@ model User {
   createdAt   DateTime      @default(now())
 }
 
+model UserAdmin {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
 model Reservation {
   id        String   @id @default(uuid())
   user      User     @relation(fields: [userId], references: [id])
