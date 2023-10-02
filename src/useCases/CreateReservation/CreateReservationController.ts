@@ -19,6 +19,7 @@ export class CreateReservationController {
             return response.status(201).json(
                 {
                     message: "Reservation created successfully!",
+                    reservation: true,
                     date: {
                         date: date,
                         time: time,
@@ -28,7 +29,7 @@ export class CreateReservationController {
         }
         catch (err) {
             const erroInfo = new InvalidParamError({
-                message: err.errors[0].message
+                message: err.message || 'Unexpected error.'
             });
             return response.status(401).json({
                 message: erroInfo.message

@@ -6,9 +6,13 @@ import { Reservation, ReservationUpdate, ReservationDelete, ReservationUpdateSta
 import { PrismaClient } from "@prisma/client";
 import { ICreateReservationResponseDTO } from "../../useCases/CreateReservation/ICreateReservationRequestDTO";
 
+
+import { Status } from '../../entities/Reservation'
+
 const prisma = new PrismaClient();
 
 export class PostgresReservationRepository implements IAReservationRepository {
+
     async save(reservation: Reservation): Promise<ICreateReservationResponseDTO> {
         try {
             const reservationCreate = await prisma.reservation.create({
@@ -67,7 +71,6 @@ export class PostgresReservationRepository implements IAReservationRepository {
                 where: {
                     date: data.date,
                     time: data.time,
-                    userId: data.userId
                 }
             });
             return reservation ? true : false;
@@ -77,9 +80,29 @@ export class PostgresReservationRepository implements IAReservationRepository {
         }
     }
 
+    async fetchAllReservations(status: string): Promise<Reservation[]> {
+        try {
+            const reservations = await prisma.reservation.findMany(
+                {
+                    where: {
+                        status: dataStatus
+                    },
+                    orderBy: {
+                        date: 'asc',
+                        time: 'asc',
+                    }
+                }
+            );
+            return reservations;
+        }
+        catch (err) {
+            throw new AppError(err.message || "Unexpected error.", 400);
+        }
+    }
     listAll(): Promise<Reservation[]> {
         throw new Error("Method not implemented.");
     }
+
 
 
 }

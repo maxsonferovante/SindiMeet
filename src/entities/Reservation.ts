@@ -33,11 +33,15 @@ export interface ReservationUpdateStatus {
 
 
 export interface ReservationExists {
-    userId: string;
     date: Date;
     time: string;
 }
 
+export interface ReservationList {
+    date: Date;
+    time: string;
+    status: string;
+}
 export class ReservationModel implements Reservation {
     public readonly id!: string;
     public userId!: string;

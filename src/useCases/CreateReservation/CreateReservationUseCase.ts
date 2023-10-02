@@ -9,7 +9,6 @@ export class CreateReservationUseCase {
     async execute(data: ICreateReservationRequestDTO) {
         try {
             const reservationExists = await this.reservationRepository.existedReservation({
-                userId: data.userId,
                 date: data.date,
                 time: data.time,
             });
@@ -27,7 +26,7 @@ export class CreateReservationUseCase {
             await this.reservationRepository.save(reservation);
         }
         catch (err) {
-            throw new AppError(err.message || "Unexpected error.", 400);
+            new AppError(err.message || 'Unexpected error.', 500);
         }
     }
 }
