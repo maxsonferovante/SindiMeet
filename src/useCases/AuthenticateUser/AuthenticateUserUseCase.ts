@@ -23,7 +23,7 @@ export class AuthenticateUserUseCase {
         }
 
         // Gerar token
-        const token = sign({ id: user.id }, auth.secrect_token, { expiresIn: auth.expires_in_token });
+        const token = sign({ id: user.id }, process.env.SECRECT_TOKEN, { expiresIn: process.env.EXPIRES_IN_TOKEN });
         return {
             token: token,
             user: {
