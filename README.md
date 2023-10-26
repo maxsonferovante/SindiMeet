@@ -12,7 +12,7 @@ O SindiMeet é um sistema que visa facilitar o agendamento de atendimento juríd
 
 ✅ Atendimento Personalizado: Nosso sistema organiza as reservas por ordem de chegada, garantindo um atendimento justo e eficiente.
 
-✅ Notificações por E-mail: Você receberá lembretes por e-mail para garantir que você não perca o seu horário de atendimento e esteja sempre atualizado.
+⛔ Notificações por E-mail: Você receberá lembretes por e-mail para garantir que você não perca o seu horário de atendimento e esteja sempre atualizado.
 
 ## Tecnologias Utilizadas
 
@@ -26,11 +26,46 @@ O SindiMeet é um sistema que visa facilitar o agendamento de atendimento juríd
 ![JWT](https://img.shields.io/badge/JSON_Web_Tokens-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 
 
+## Rotas
+
+Aqui está uma lista das principais rotas da API:
+
+## Rotas de Autenticação
+
+| Rota             | Método | Descrição                            |
+| ---------------- | ------ | ------------------------------------ |
+| `/user/create`   | POST   | Crie um novo usuário.                |
+| `/`              | POST   | Autentique um usuário.               |
+
+
+## Rotas de Reservas
+
+| Rota                              | Método | Descrição                              |
+| --------------------------------- | ------ | -------------------------------------- |
+| `/reservation/create`             | POST   | Crie uma nova reserva.                 |
+| `/reservation/list/:status`       | GET    | Obtenha a lista de reservas com base no status fornecido. |
+| `/reservation/list/by-user`       | GET    | Obtenha a lista de reservas de um usuário específico.    |
+| `/reservation/update-status/:id_reservation` | POST   | Atualize o status de uma reserva com base no ID fornecido. |
+| `/reservation/list/checkin`      | GET    | Obtenha uma lista de reservas para o check-in de hoje, ordenadas por horário. |
+
+
+
 ## Como Executar o Projeto
 
-1. **Instalação de Dependências**: Certifique-se de ter o Node.js instalado em seu sistema. Execute `npm install` para instalar as dependências do projeto.
+1. **Clone do repositório**: 
+    
+    Execute no seu terminal o comando:
+    ```
+    git clone https://github.com/maxsonferovante/SindiMeet.git
+    ```
+    Acesse a pasta do projeto:
+    ```
+    cd SindMeet
+    ```
 
-2. **Configuração do Banco de Dados com Docker**: Utilize Docker para rodar uma instância do PostgreSQL com o seguinte comando:
+2. **Instalação de Dependências**: Certifique-se de ter o Node.js instalado em seu sistema. Execute `npm install` para instalar as dependências do projeto.
+
+3. **Configuração do Banco de Dados com Docker**: Utilize Docker para rodar uma instância do PostgreSQL com o seguinte comando:
 
     ```bash
     docker run --name sindimeet-postgres -e POSTGRES_PASSWORD=suasenha -p 5432:5432 -d postgres
@@ -38,17 +73,17 @@ O SindiMeet é um sistema que visa facilitar o agendamento de atendimento juríd
 
     Certifique-se de substituir `suasenha` pela senha desejada.
 
-3. **Configuração do Banco de Dados sem Docker**: Se preferir, configure um banco de dados PostgreSQL localmente e ajuste as variáveis de ambiente no arquivo `.env`.
+4. **Configuração do Banco de Dados sem Docker**: Se preferir, configure um banco de dados PostgreSQL localmente e ajuste as variáveis de ambiente no arquivo `.env`.
 
-4. **Migrações do Prisma**: Execute `npx prisma migrate dev` para criar as tabelas do banco de dados.
+5. **Migrações do Prisma**: Execute `npx prisma migrate dev` para criar as tabelas do banco de dados.
 
-5. **Iniciar o Servidor**: Inicie o servidor Node.js com `npm run dev`.
+6. **Iniciar o Servidor**: Inicie o servidor Node.js com `npm run dev`.
 
-6. **Acesso à Aplicação**: Acesse a aplicação em seu navegador ou via ferramentas como o Postman, configurando as rotas e autenticação conforme a documentação da API.
+7. **Acesso à Aplicação**: Acesse a aplicação em seu navegador ou via ferramentas como o Postman, configurando as rotas e autenticação conforme a documentação da API.
 
-7. **Utilização da API**: Utilize a API para criar, listar, atualizar e excluir reservas, além de autenticar usuários.
+8. **Utilização da API**: Utilize a API para criar, listar, atualizar e excluir reservas, além de autenticar usuários.
 
-8. **Envio de E-mails**: Configure as credenciais de envio de e-mails no arquivo `.env` para receber notificações sobre suas reservas.
+9. **Envio de E-mails**: Configure as credenciais de envio de e-mails no arquivo `.env` para receber notificações sobre suas reservas.
 
 Lembre-se de consultar a documentação da API para obter detalhes sobre como usar cada rota e endpoint.
 
